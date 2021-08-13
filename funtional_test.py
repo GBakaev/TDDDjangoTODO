@@ -8,6 +8,18 @@ currentDir = os.path.dirname(os.path.abspath(__file__))
 browser = webdriver.Chrome(currentDir + "/chromedriver")
 browser.get('http://localhost:8000')
 
-# Brand New Django installation; 
-# Title: The install worked successfully! Congratulations!
+# We check the page title that is: Awesome Lists
 assert 'successfully' in browser.title
+
+# We want to enter a TO-DO Item
+
+# We enter 'Do Homework' in the textfield
+
+# We hit enter, the page gets refreshed and we see our To-Do item there
+
+# We add another item, this time 'Study for TDD'
+
+# The page refreshes again and we see our updated TO-Do list
+
+# Quit Driver
+browser.quit()

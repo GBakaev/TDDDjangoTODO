@@ -1,3 +1,5 @@
 chromedriver
 db.sqlite3
 TDDDjangoTODO/__pycache__/*
+lists/__pycache__/*
+lists/migrations/*
