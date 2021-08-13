@@ -9,7 +9,7 @@ browser = webdriver.Chrome(currentDir + "/chromedriver")
 browser.get('http://localhost:8000')
 
 # We check the page title that is: Awesome Lists
-assert 'successfully' in browser.title
+assert 'Awesome Lists' in browser.title
 
 # We want to enter a TO-DO Item
 
