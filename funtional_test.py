@@ -29,9 +29,9 @@ class NewVisisorTest(unittest.TestCase):
         inputBox = self.browser.find_element_by_id('id_new_item')
         self.assertEqual(
             inputBox.get_attribute('placeholder'),
-            'Enter a TO-Do item'
+            'Enter a To-Do item'
         )
-        
+
         # We enter 'Do Homework' in the textfield
         inputBox.send_keys('Do Homework')
 
@@ -40,7 +40,8 @@ class NewVisisorTest(unittest.TestCase):
         table = self.browser.find_element_by_id('id_list_table')
         rows = table.find_elements_by_tag_name('tr')
         self.assertTrue(
-            any(row.text == '1: Do Homework' for row in rows)
+            any(row.text == '1: Do Homework' for row in rows),
+            "New to-do item did not appear in table"
         )
 
         # Finish the tests
