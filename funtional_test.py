@@ -17,6 +17,11 @@ class NewVisisorTest(unittest.TestCase):
         # Quit Driver
         self.browser.quit()
 
+    def check_for_row_in_list_table(self, row_text):
+        table = self.browser.find_element_by_id('id_list_table')
+        rows = table.find_elements_by_tag_name('tr')
+        self.assertIn(row_text, [row.text for row in rows])
+
     # Test user can start a list and save it
     def test_user_can_start_new_list(self):
         # Get the Webpage
@@ -34,22 +39,22 @@ class NewVisisorTest(unittest.TestCase):
 
         # We enter 'Do Homework' in the textfield
         inputBox.send_keys('Do Homework')
-
         # We hit enter, the page gets refreshed and we see our To-Do item there
         inputBox.send_keys(Keys.ENTER)
-        table = self.browser.find_element_by_id('id_list_table')
-        rows = table.find_elements_by_tag_name('tr')
-        self.assertTrue(
-            any(row.text == '1: Do Homework' for row in rows),
-            "New to-do item did not appear in table"
-        )
+        self.check_for_row_in_list_table('1: Do Homework')
+
+        # We add another item to the list
+        # We add another item, this time 'Study for TDD'
+        inputbox = self.browser.find_element_by_id('id_new_item') 
+        inputbox.send_keys('Study for TDD') 
+        inputbox.send_keys(Keys.ENTER)
+
+        # The page refreshes again and we see our updated TO-Do list
+        self.check_for_row_in_list_table('1: Do Homework')
+        self.check_for_row_in_list_table('2: Study for TDD')
 
         # Finish the tests
         self.fail('Finish the Tests.')
-
-        # We add another item, this time 'Study for TDD'
-
-        # The page refreshes again and we see our updated TO-Do list
 
 # Run all the functional tests.
 if __name__ == '__main__':
