@@ -20,6 +20,7 @@ import lists.views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', lists.views.home_page, name='home'),
-    re_path(r'^lists/the-only-list-in-the-world/$', lists.views.view_list, name="view_list"),
+    re_path(r'^lists/(\d+)/$', lists.views.view_list, name="view_list"),
+    re_path(r'^lists/(\d+)/add_item', lists.views.add_item, name="add_item"),
     re_path(r'^lists/new$', lists.views.new_list, name='new_list')
 ]
